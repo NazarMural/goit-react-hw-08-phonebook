@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { register } from 'redux/auth/auth-operations';
 import { getError } from 'redux/auth/auth-selectors';
 import { getNotification } from 'components/helped/getNotificatin';
+import { Container } from 'components/HomeDescription/HomeDescription.styled';
+import { Button, Form, Input, Label } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -31,24 +33,24 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        <Label>
           Name
-          <input type="text" name="name" min="6" />
-        </label>
-        <label>
+          <Input type="text" name="name" min="6" />
+        </Label>
+        <Label>
           E-mail
-          <input type="text" name="email" />
-        </label>
-        <label>
+          <Input type="text" name="email" />
+        </Label>
+        <Label>
           Password
-          <input type="password" name="password" />
-        </label>
-        <button type="submit">Sign up</button>
-      </form>
+          <Input type="password" name="password" />
+        </Label>
+        <Button type="submit">Sign up</Button>
+      </Form>
       {error?.response?.data?.name &&
         getNotification('This email is already registered')}
-    </div>
+    </Container>
   );
 };

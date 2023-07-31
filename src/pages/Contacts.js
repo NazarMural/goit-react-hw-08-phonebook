@@ -5,11 +5,12 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { Section } from 'components/Section/Section';
+import { ContactsContainer } from './Contacts.styled';
 
 const Contacts = () => {
   const { isLoading, error } = useSelector(getContacts);
   return (
-    <>
+    <ContactsContainer>
       <Section title={'Add new contact'}>
         <ContactForm />
       </Section>
@@ -18,7 +19,7 @@ const Contacts = () => {
         <Filter />
         <ContactList />
       </Section>
-    </>
+    </ContactsContainer>
   );
 };
 

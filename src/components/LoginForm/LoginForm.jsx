@@ -1,3 +1,9 @@
+import {
+  Button,
+  Form,
+  Input,
+  Label,
+} from 'components/RegisterForm/RegisterForm.styled';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -28,27 +34,27 @@ export const LoginForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <Form onSubmit={handleSubmit}>
+        <Label>
           E-mail
-          <input
+          <Input
             type="text"
             name="email"
             value={email}
             onChange={handleChange}
           />
-        </label>
-        <label>
+        </Label>
+        <Label>
           Password
-          <input
+          <Input
             type="password"
             name="password"
             value={password}
             onChange={handleChange}
           />
-        </label>
-        <button type="submit">Sign in</button>
-      </form>
+        </Label>
+        <Button type="submit">Sign in</Button>
+      </Form>
     </div>
   );
 };

@@ -2,32 +2,39 @@ import { useSelector } from 'react-redux';
 
 import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 import { Section } from 'components/Section/Section';
-import { NavLink } from 'react-router-dom';
+import { Container, Description, Link, Nav } from './HomeDescription.styled';
 
 export const HomeDescription = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   return (
-    <div>
+    <Container>
       <div>
         <Section title={'Welcome to Phonebook'}>
-          <p>
-            Where All Your Contacts Are Safe and Sound
-            <br />
-            We're thrilled to have you here! At ContactKeepers, we understand
-            the value of your phone contacts – they're not just numbers; they're
-            the connections that make your world go 'round.
-          </p>
-          {!isLoggedIn && (
+          <Description>
+            Hello and welcome! We are excited to have you on our PhoneBook App.
+            Here, you can easily manage and store all your important mobile
+            contacts in one place.
+          </Description>
+          {isLoggedIn ? (
+            <Description>
+              Thank you for being a part of our community. Feel free to explore
+              and use our app to keep your contacts safe and organized!
+            </Description>
+          ) : (
             <>
-              <p>Join Us Today!</p>
-              <div>
-                <NavLink to="/register">Register</NavLink>
-                <NavLink to="/login">Log In</NavLink>
-              </div>
+              <Description>
+                To get started, you can create an account or log in if you
+                already have one. Join us today and make your contact management
+                effortless!
+              </Description>
+              <Nav>
+                <Link to="/register">Register</Link>
+                <Link to="/login">Log In</Link>
+              </Nav>
             </>
           )}
         </Section>
       </div>
-    </div>
+    </Container>
   );
 };

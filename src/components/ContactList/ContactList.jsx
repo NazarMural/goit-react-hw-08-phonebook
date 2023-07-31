@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import { fetchContacts, deleteContact } from 'redux/operations';
 import { getContacts, getFilter } from 'redux/selectors';
+import { Button, InfoContact, Item, List } from 'components/Filter/Filter.styled';
 
 export function ContactList() {
   const filter = useSelector(getFilter);
@@ -23,24 +24,24 @@ export function ContactList() {
   const visibleContacts = getFilterContact();
 
   return (
-    <ul>
+    <List>
       {isLoading && <p>Loading contacts...</p>}
       {error && <p>{error}</p>}
       {contactsItem.length > 0 ? (
         visibleContacts.map(({ id, name, number }) => (
-          <li key={id}>
-            <p>
+          <Item key={id}>
+            <InfoContact>
               <span>{name}: </span>
               <span>{number}</span>
-            </p>
-            <button type="button" onClick={() => dispatch(deleteContact(id))}>
+            </InfoContact>
+            <Button type="button" onClick={() => dispatch(deleteContact(id))}>
               <span>Delete</span>
-            </button>
-          </li>
+            </Button>
+          </Item>
         ))
       ) : (
-        <li>Oops, contact list is empty. Add new contact</li>
+        <Item>Oops, contact list is empty. Add new contact</Item>
       )}
-    </ul>
+    </List>
   );
 }

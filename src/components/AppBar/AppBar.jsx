@@ -4,6 +4,7 @@ import { getIsLoggedIn, getUser } from 'redux/auth/auth-selectors';
 import { logOut } from 'redux/auth/auth-operations';
 import { Navigation } from 'components/Navigation/Navigation';
 import { AuthNavigation } from 'components/AuthNavigation/AuthNavigation';
+import { Button, ContainerLogout, Header, UserName } from './AppBar.styled';
 
 export const AppBar = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -11,18 +12,20 @@ export const AppBar = () => {
   const user = useSelector(getUser);
 
   return (
-    <header>
+    <Header>
       <Navigation />
       {isLoggedIn ? (
-        <div>
-          <p>{user.name}</p>
-          <button type="button" onClick={() => dispatch(logOut())}>
+        <ContainerLogout>
+          <UserName>
+            Welcome, <span>{user.name}</span>
+          </UserName>
+          <Button type="button" onClick={() => dispatch(logOut())}>
             <span>Logout</span>
-          </button>
-        </div>
+          </Button>
+        </ContainerLogout>
       ) : (
         <AuthNavigation />
       )}
-    </header>
+    </Header>
   );
 };
